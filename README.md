@@ -6,10 +6,10 @@
 ![badge](https://img.shields.io/tokei/lines/github/hikelang/esky)
 
 
-<div style="text-align: center;">
+<p align="center">
   <img src="images/banner.svg" width="40%"></img>
   <h2>Simple library for making compilers supporting a big amount of platforms.</h2>
-</div>
+</p>
 
 ## Supported platforms:
 - [ ] C++
