@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "cpp.h"
+#include "../../../include/targets/cpp/type.h"
 
 /// Allocate C++ builder struct on heap, initialize default values
 /// \param   output_filename    path to output file
@@ -73,50 +73,6 @@ EskyCppScalarDeclaration_T *init_esky_cpp_scalar_declaration(char *name, EskyCpp
   return scalar_declaration;
 }
 
-/// Allocate C++ function declaration struct on heap, initialize default values
-/// \param   return_type        function's return type
-/// \param   namespace          name's namespace
-/// \param   name               function's name
-/// \param   arguments          function's arguments
-/// \return  NULL on error, not NULL on success (allocated structure)
-EskyCppFunctionDeclaration_T *init_esky_cpp_function_declaration(EskyCppType_T *return_type, char *namespace, char *name, EskyCppScalarDeclaration_T **arguments)
-{
-  EskyCppFunctionDeclaration_T *function_declaration = malloc(sizeof(struct ESKY_CPP_FUNCTION_DECLARATION_STRUCT));
-  function_declaration->return_type = return_type;
-  function_declaration->namespace = namespace;
-  function_declaration->arguments = arguments;
-  function_declaration->name = name;
-  return function_declaration;
-}
-
-/// Allocate C++ function implementation struct on heap, initialize default values
-/// \param   declaration        function's declaration structure
-/// \param   implementation     code block (list of statements)
-/// \return  NULL on error, not NULL on success (allocated structure)
-EskyCppFunctionImplementation_T *init_esky_cpp_function_implementation(EskyCppFunctionDeclaration_T *declaration, EskyCppStatement_T **implementation)
-{
-  EskyCppFunctionImplementation_T *function_implementation = malloc(sizeof(struct ESKY_CPP_FUNCTION_IMPLEMENTATION_STRUCT));
-  function_implementation->declaration = declaration;
-  function_implementation->implementation = implementation;
-  return function_implementation;
-}
-
-/// Allocate C++ class declaration struct on heap, initialize default values
-/// \param   namespace          name's namespace
-/// \param   class_name         class' name
-/// \param   inherits           does class inherit
-/// \param   extends            what class it extends from
-/// \return  NULL on error, not NULL on success (allocated structure)
-EskyCppClassDeclaration_T *init_esky_cpp_class_declaration(char *namespace, char *name, bool inherits, EskyCppClassDeclaration_T *extends)
-{
-  EskyCppClassDeclaration_T *class_declaration = malloc(sizeof(struct ESKY_CPP_CLASS_DECLARATION_STRUCT));
-  class_declaration->namespace = namespace;
-  class_declaration->name = name;
-  class_declaration->inherits = inherits;
-  class_declaration->extends = extends;
-  return class_declaration;
-}
-
 /// \param   type               Esky type structure
 /// \return  emitted C++ type
 char *esky_cpp_emit_type(EskyCppType_T *type)
@@ -165,8 +121,8 @@ char *esky_cpp_emit_primary_type(EskyCppPrimaryType_T type)
 /// \return  emitted C++ type
 char *esky_cpp_emit_pointer_type(EskyCppPointerType_T *type)
 {
-  char *str;
-  asprintf(&str, "%s*", esky_cpp_emit_type(type->type));
+  char *str = malloc(ESKY_CPP_EMITTED_TYPE_MAX_BUFFER_SIZE * sizeof(char));
+  sprintf(str, "%s*", esky_cpp_emit_type(type->type));
   return str;
 }
 
@@ -174,7 +130,7 @@ char *esky_cpp_emit_pointer_type(EskyCppPointerType_T *type)
 /// \return  emitted C++ type
 char *esky_cpp_emit_array_type(EskyCppArrayType_T *type)
 {
-  char *str;
-  asprintf(&str, "%s[]", esky_cpp_emit_type(type->type));
+  char *str = malloc(ESKY_CPP_EMITTED_TYPE_MAX_BUFFER_SIZE * sizeof(char));
+  sprintf(str, "%s[]", esky_cpp_emit_type(type->type));
   return str;
 }
