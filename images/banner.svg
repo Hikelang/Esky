@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="590" height="361" viewBox="0 0 590 361">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #4b79bb;
+      }
+
+      .cls-2 {
+        fill: #3b3b3b;
+      }
+
+      .cls-3 {
+        fill: #32affe;
+      }
+
+      .cls-4 {
+        font-size: 771.667px;
+        fill: #81ceff;
+        font-family: "Mont Blanc";
+        text-transform: uppercase;
+      }
+    </style>
+  </defs>
+  <rect id="Прямоугольник_1" data-name="Прямоугольник 1" class="cls-1" x="123" y="181" width="365" height="351" rx="15" ry="15"/>
+  <rect id="Прямоугольник_1-2" data-name="Прямоугольник 1" class="cls-1" x="-233" y="-134" width="365" height="351" rx="15" ry="15"/>
+  <rect id="Прямоугольник_1-3" data-name="Прямоугольник 1" class="cls-2" x="392" y="-55" width="365" height="318" rx="15" ry="15"/>
+  <rect id="Прямоугольник_1-4" data-name="Прямоугольник 1" class="cls-3" x="-21" y="291" width="365" height="351" rx="15" ry="15"/>
+  <rect id="Прямоугольник_1-5" data-name="Прямоугольник 1" class="cls-3" x="132" y="-267" width="230" height="348" rx="15" ry="15"/>
+  <text id="esky" class="cls-4" transform="translate(63.615 246.984) scale(0.24)">e<tspan class="cls-3">sky</tspan></text>
+</svg>
