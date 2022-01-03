@@ -1,2 +1,4 @@
 **/*.out
 build
+**/test.c
+**/*.exe

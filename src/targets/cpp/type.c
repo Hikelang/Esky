@@ -1,20 +1,22 @@
 /**
- * Copyright 2022 Salimgereyev Adi
+ *  Copyright 2022 Salimgereev Adi
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
 
 #include "../../../include/targets/cpp/type.h"
+#include "../../../include/logging/log.h"
+#include "../../../include/util.h"
 
 /// Allocate C++ builder struct on heap, initialize default values
 /// \param   output_filename    path to output file
@@ -61,22 +63,11 @@ EskyCppType_T *init_esky_cpp_array_type(EskyCppType_T *type)
   return secondary_type;
 }
 
-/// Allocate C++ scalar declaration struct on heap, initialize default values
-/// \param   name               argument's name
-/// \param   type               argument's type
-/// \return  NULL on error, not NULL on success (allocated structure)
-EskyCppScalarDeclaration_T *init_esky_cpp_scalar_declaration(char *name, EskyCppType_T *type)
-{
-  EskyCppScalarDeclaration_T *scalar_declaration = malloc(sizeof(struct ESKY_CPP_SCALAR_DECLARATION_STRUCT));
-  scalar_declaration->name = name;
-  scalar_declaration->type = type;
-  return scalar_declaration;
-}
-
 /// \param   type               Esky type structure
 /// \return  emitted C++ type
 char *esky_cpp_emit_type(EskyCppType_T *type)
 {
+  type->kind = 3;
   switch (type->kind)
   {
   case PRIMARY:
@@ -86,7 +77,8 @@ char *esky_cpp_emit_type(EskyCppType_T *type)
   case POINTER:
     return esky_cpp_emit_pointer_type(type->type.pointer_type);
   default:
-    return "\0";
+    log_fatal("Cannot emit C++ type, (kind = %d)", type->kind);
+    exit(1);
   }
 }
 
@@ -121,16 +113,12 @@ char *esky_cpp_emit_primary_type(EskyCppPrimaryType_T type)
 /// \return  emitted C++ type
 char *esky_cpp_emit_pointer_type(EskyCppPointerType_T *type)
 {
-  char *str = malloc(ESKY_CPP_EMITTED_TYPE_MAX_BUFFER_SIZE * sizeof(char));
-  sprintf(str, "%s*", esky_cpp_emit_type(type->type));
-  return str;
+  return format("%s*", esky_cpp_emit_type(type->type));
 }
 
 /// \param   type               Esky array type structure
 /// \return  emitted C++ type
 char *esky_cpp_emit_array_type(EskyCppArrayType_T *type)
 {
-  char *str = malloc(ESKY_CPP_EMITTED_TYPE_MAX_BUFFER_SIZE * sizeof(char));
-  sprintf(str, "%s[]", esky_cpp_emit_type(type->type));
-  return str;
+  return format("%s[]", esky_cpp_emit_type(type->type));
 }

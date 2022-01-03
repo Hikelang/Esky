@@ -1,20 +1,32 @@
 /**
- * Copyright 2022 Salimgereyev Adi
+ *  Copyright 2022 Salimgereev Adi
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
 
 #include "../../../include/targets/cpp/function.h"
+
+/// Allocate C++ scalar declaration struct on heap, initialize default values
+/// \param   name               argument's name
+/// \param   type               argument's type
+/// \return  NULL on error, not NULL on success (allocated structure)
+EskyCppScalarDeclaration_T *init_esky_cpp_scalar_declaration(char *name, EskyCppType_T *type)
+{
+  EskyCppScalarDeclaration_T *scalar_declaration = malloc(sizeof(struct ESKY_CPP_SCALAR_DECLARATION_STRUCT));
+  scalar_declaration->name = name;
+  scalar_declaration->type = type;
+  return scalar_declaration;
+}
 
 /// Allocate C++ function declaration struct on heap, initialize default values
 /// \param   return_type        function's return type

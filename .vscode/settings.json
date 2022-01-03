@@ -1,1 +1,9 @@
-{}
+{
+  "files.associations": {
+    "*.txt": "fsharp",
+    "util.h": "c",
+    "stdarg.h": "c",
+    "stdlib.h": "c",
+    "log.h": "c"
+  }
+}
