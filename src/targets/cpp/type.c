@@ -18,16 +18,6 @@
 #include "../../../include/logging/log.h"
 #include "../../../include/util.h"
 
-/// Allocate C++ builder struct on heap, initialize default values
-/// \param   output_filename    path to output file
-/// \return  NULL on error, not NULL on success (allocated structure)
-EskyCppBuilder_T *init_esky_cpp_builder(char *output_filename)
-{
-  EskyCppBuilder_T *builder = malloc(sizeof(struct ESKY_CPP_BUILDER_STRUCT));
-  builder->output_filename = output_filename;
-  return builder;
-}
-
 /// Allocate C++ primary type struct on heap, initialize default values
 /// \param   primary_type       primary type
 /// \return  NULL on error, not NULL on success (allocated structure)

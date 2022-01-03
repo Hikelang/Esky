@@ -66,18 +66,6 @@ typedef struct ESKY_CPP_TYPE_STRUCT
   } type;
 } EskyCppType_T;
 
-typedef struct ESKY_CPP_BUILDER_STRUCT
-{
-  char *output_filename;
-
-  char **imports;
-} EskyCppBuilder_T;
-
-/// Allocate C++ builder struct on heap, initialize default values
-/// \param   output_filename    path to output file
-/// \return  NULL on error, not NULL on success (allocated structure)
-EskyCppBuilder_T *init_esky_cpp_builder(char *output_filename);
-
 /// Allocate C++ primary type struct on heap, initialize default values
 /// \param   primary_type       primary type
 /// \return  NULL on error, not NULL on success (allocated structure)
