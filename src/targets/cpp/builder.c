@@ -24,7 +24,7 @@ EskyCppBuilder_T *init_esky_cpp_builder_for_header_file(char *output_filename)
   EskyCppBuilder_T *builder = malloc(sizeof(struct ESKY_CPP_BUILDER_STRUCT));
   builder->header = true;
   builder->output_filename = output_filename;
-  return builder
+  return builder;
 }
 
 /// Allocate C++ builder struct on heap, initialize default values
